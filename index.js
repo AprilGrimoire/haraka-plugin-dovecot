@@ -122,8 +122,11 @@ exports.get_dovecot_response = function (connection, domain, email, cb) {
     }
   }
 
+  socket_address = options.path ?
+    options.path :
+    `${options.host}:${options.port}`;
   connection.transaction.results.add(plugin, {
-    msg : `sock: ${ options.host }:${ options.port }`
+    msg : `sock: ${ socket_address }`
   })
 
   connection.logdebug(plugin, `checking ${email}`);
