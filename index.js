@@ -131,7 +131,7 @@ exports.get_dovecot_response = function (connection, domain, email, cb) {
 
   connection.logdebug(plugin, `checking ${email}`);
   const client = net.connect(options, function () { //'connect' listener
-    connection.logprotocol(plugin, `connect to Dovecot auth-master:${JSON.stringify(options)}`);
+    connection.logprotocol(plugin, `connect to Dovecot auth-userdb:${JSON.stringify(options)}`);
   })
 
   client
@@ -151,7 +151,7 @@ exports.get_dovecot_response = function (connection, domain, email, cb) {
       cb(e);
     })
     .on('end', () => {
-      connection.logprotocol(plugin, 'closed connect to Dovecot auth-master');
+      connection.logprotocol(plugin, 'closed connect to Dovecot auth-userdb');
     })
 }
 
